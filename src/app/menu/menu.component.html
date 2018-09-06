@@ -1,27 +1,34 @@
-<button class="pizzaBtn" type="button" (click)="getPizza($event)" >Pizza</button>
-<button class="noodlesBtn" type="button" (click)="getNoodles($event)" >Noodles</button>
-<button class="drinksBtn" type="button" (click)="getDrinks($event)" >Drinks</button>
-<button class="addBtn" type="button" (click)="addDish($event)" >Add dish</button>
+<button class="pizzaBtn" type="button" (click)="getPizza($event)">Pizza</button>
+<button class="noodlesBtn" type="button" (click)="getNoodles($event)">Noodles</button>
+<button class="drinksBtn" type="button" (click)="getDrinks($event)">Drinks</button>
+<button class="addBtn" type="button" (click)="addDish($event)">Add dish</button>
+<div class="basket">
+  <app-order [order]="order"></app-order>
+</div>
+<div class="menuTable">
+  <table class="menu">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Price</th>
 
-<table class="menu">
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Price</th>
+    </tr>
+    <tr *ngFor="let dish of dishes">
+      <!--<tr *ngFor="let dish of menuService.dishes$ | async " >-->
+      <td>{{dish.id}}</td>
+      <td>{{dish.name}}</td>
+      <td>{{dish.type}}</td>
+      <td>{{dish.description}}</td>
+      <td>{{dish.price}}</td>
+      <td class="btn">
+        <button [id]="'add' + dish.id" (click)="addToBasket($event)">Add</button>
+      </td>
+      <td class="btn">
+        <button [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
+      </td>
+    </tr>
+  </table>
+</div>
 
-  </tr>
-  <tr *ngFor="let dish of dishes" >
-  <!--<tr *ngFor="let dish of menuService.dishes$ | async " >-->
-    <td>{{dish.id}}</td>
-    <td>{{dish.name}}</td>
-    <td>{{dish.type}}</td>
-    <td>{{dish.description}}</td>
-    <td>{{dish.price}}</td>
-    <td class="btn" ><button [id]="'add' + dish.id" (click)="addToBasket($event)">Add</button></td>
-    <td class="btn" ><button [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button></td>
-  </tr>
-</table>
-
-<app-order [order]="order"></app-order>
