@@ -1,0 +1,14 @@
+.menu{
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+th{
+  background-color: #4CAF50;
+  color: white;
+}
+.btn{
+  background-color: white;
+  width: 50px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}

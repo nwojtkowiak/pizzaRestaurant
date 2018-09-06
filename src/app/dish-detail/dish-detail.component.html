@@ -1,0 +1,17 @@
+<table class="detail">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Price</th>
+
+  </tr>
+  <tr *ngIf="dish" >
+    <td>{{dish.id}}</td>
+    <td>{{dish.name}}</td>
+    <td>{{dish.type}}</td>
+    <td>{{dish.description}}</td>
+    <td>{{dish.price}}</td>
+  </tr>
+</table>
