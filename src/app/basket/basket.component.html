@@ -1,4 +1,4 @@
-<table class="order">
+<table class="basket">
   <tr>
     <th>Id</th>
     <th>Name</th>
@@ -7,12 +7,12 @@
     <th>Price</th>
 
   </tr>
-  <tr *ngFor="let dish of order" >
+  <tr *ngFor="let dish of basket" >
     <td>{{dish.id}}</td>
     <td>{{dish.name}}</td>
     <td>{{dish.type}}</td>
     <td>{{dish.description}}</td>
     <td>{{dish.price}}</td>
-
   </tr>
 </table>
+<button class="confirmBtn" *ngIf="basket.length>0" (click)="order()">Order</button>

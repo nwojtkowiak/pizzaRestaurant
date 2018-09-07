@@ -2,9 +2,10 @@ import {Component, EventEmitter, OnInit, Output, AfterViewChecked, OnDestroy} fr
 import {Dish} from '../shared/dish';
 import {MenuService} from '../shared/menu.service';
 import {Subject, Subscription} from 'rxjs';
-import {OrderService} from '../order.service';
 import {Router} from '@angular/router';
-import {takeUntil} from "rxjs/operators";
+import {takeUntil} from 'rxjs/operators';
+import {OrderService} from "../shared/order.service";
+import {LoginService} from "../shared/login.service";
 
 @Component({
   selector: 'app-menu',
@@ -16,9 +17,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   dishes: Dish[];
   order: Dish[];
+  login = false;
 
   constructor(public readonly menuService: MenuService,
               private readonly orderService: OrderService,
+              private readonly loginService: LoginService,
               private router: Router) {  }
 
   ngOnInit() {
@@ -28,7 +31,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getDishes();
+
+    this.loginService.login$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(
+      login => this.login = login
+    );
+
+    this.menuService.getDishes(true);
     this.order = [];
   }
 
@@ -38,7 +48,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getPizza();
+    this.menuService.getPizza(!this.login);
   }
 
   getNoodles(event: Event) {
@@ -47,7 +57,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getNoodles();
+    this.menuService.getNoodles(!this.login);
   }
 
   getDrinks(event: Event) {
@@ -56,12 +66,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getDrinks();
+    this.menuService.getDrinks(!this.login);
   }
 
-  addToBasket(event: Event) {
-    const id = event.srcElement.getAttribute('id');
-    this.menuService.getDish(Number(id.substr(3))).subscribe(dish => this.order.push(dish));
+  addToBasket(dish: Dish) {
+    /*this.menuService.getDish(id).subscribe(dish => this.basket.push(dish));
+    this.orderId = this.menuService.addDishToBasket(this.orderId, id);*/
+
+    this.orderService.addToBasket(!this.login);
   }
 
   showDetail(dishId: number) {
@@ -71,7 +83,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   addDish(event: Event) {
     const dish: Dish = {price: 50, description: 'ser, kurczak, kukurydza, ananas',
-      available: true, name: 'wykoksana pizza', type: 'pizza'};
+      isAvailable: true, name: 'wykoksana pizza', type: 'pizza'};
     this.menuService.addDish(dish);
   }
 

@@ -24,4 +24,9 @@ export class DishDetailComponent implements OnInit {
 
   }
 
+  changeAvailability(dish: Dish) {
+
+    this.menuService.changeAvailability(dish);
+  }
+
 }

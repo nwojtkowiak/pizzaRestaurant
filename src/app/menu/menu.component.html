@@ -1,10 +1,12 @@
 <button class="pizzaBtn" type="button" (click)="getPizza($event)">Pizza</button>
 <button class="noodlesBtn" type="button" (click)="getNoodles($event)">Noodles</button>
 <button class="drinksBtn" type="button" (click)="getDrinks($event)">Drinks</button>
-<button class="addBtn" type="button" (click)="addDish($event)">Add dish</button>
+<!--<button class="addBtn" type="button" (click)="addDish($event)">Add dish</button>-->
 <div class="basket">
-  <app-order [order]="order"></app-order>
+  <app-order></app-order>
 </div>
+
+
 <div class="menuTable">
   <table class="menu">
     <tr>
@@ -23,12 +25,13 @@
       <td>{{dish.description}}</td>
       <td>{{dish.price}}</td>
       <td class="btn">
-        <button [id]="'add' + dish.id" (click)="addToBasket($event)">Add</button>
+        <button [id]="'add' + dish.id" (click)="addToBasket(dish)">Add</button>
       </td>
       <td class="btn">
-        <button [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
+        <button  [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
       </td>
     </tr>
   </table>
 </div>
+
 

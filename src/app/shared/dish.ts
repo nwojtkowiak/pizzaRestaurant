@@ -4,5 +4,5 @@ export interface Dish {
   name: string;
   description: string;
   price: number;
-  available: boolean;
+  isAvailable: boolean;
 }
