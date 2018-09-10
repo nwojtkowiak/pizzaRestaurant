@@ -3,15 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import {MenuComponent} from './menu/menu.component';
 import {DishDetailComponent} from './dish-detail/dish-detail.component';
 import {BasketComponent} from './basket/basket.component';
-import {AuthGuardService} from "./shared/auth-guard.service";
+import {AuthGuardService} from "./shared/login/auth-guard.service";
 import {LoginComponent} from "./login/login.component";
 import {SummaryComponent} from "./summary/summary.component";
+import {OrderComponent} from "./order/order.component";
+import {OrderDetailComponent} from "./order-detail/order-detail.component";
 
 const routes: Routes = [
   {path: 'menu', component: MenuComponent},
   {path: 'menu/:id', component: DishDetailComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'order', component: BasketComponent},
+  {path: 'orders', component: OrderComponent},
+  {path: 'orders/:id', component: OrderDetailComponent},
   {path: 'summary', component: SummaryComponent}
 ];
 

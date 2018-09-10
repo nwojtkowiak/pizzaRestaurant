@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {OrderService} from "../shared/order.service";
-import {Dish} from "../shared/dish";
+import {OrderService} from "../shared/order/order.service";
+import {Dish} from "../shared/models/dish";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Router} from "@angular/router";

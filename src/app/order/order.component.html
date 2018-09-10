@@ -1,0 +1,20 @@
+<table class="basket">
+  <tr>
+    <th>Id</th>
+    <th>Dishes</th>
+    <th>Status</th>
+
+  </tr>
+  <tr *ngFor="let order of orders" >
+    <td>{{order.id}}</td>
+    <td>{{order.dishIds}}</td>
+    <td>{{order.status}}</td>
+    <td class="btn">
+      <button [id]="'detailBtn' + order.id" (click)="showDetail(order)">Detail</button>
+    </td>
+    <td class="btn">
+      <input [id]="'status' + order.id" type="text">
+      <button [id]="'statusBtn' + order.id" (click)="changeStatus(order)">Change status</button>
+    </td>
+  </tr>
+</table>

@@ -1,20 +1,20 @@
 {
   "dishes": [
     {
-      "id": 2,
-      "name": "Pizza Funghi",
+      "id": 1,
+      "name": "Pizza Carbonara",
       "isAvailable": true,
-      "description": "Sos, ser, pieczarki",
+      "description": "Sos śmietanowy z szynką",
       "type": "pizza",
-      "price": "23.50"
+      "price": "12.00"
     },
     {
-      "id": 4,
-      "name": "Spagetti Bolognese",
+      "id": 2,
+      "name": "Spagetti Carbonara",
       "isAvailable": false,
-      "description": "Sos boloński",
+      "description": "Sos śmietanowy z szynką",
       "type": "noodle",
-      "price": "14"
+      "price": "17.50"
     },
     {
       "id": 5,
@@ -31,135 +31,31 @@
       "description": "green tea",
       "type": "drink",
       "price": "17.50"
-    },
-    {
-      "id": 55,
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza"
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 56
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 57
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 58
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 59
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 60
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 61
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 62
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 63
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 64
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 65
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 66
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 67
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 68
-    },
-    {
-      "price": 50,
-      "description": "ser, kurczak, kukurydza, ananas",
-      "available": true,
-      "name": "wykoksana pizza",
-      "type": "pizza",
-      "id": 69
     }
   ],
   "orders": [
     {
-      "id": 1,
       "dishIds": [
         1,
-        5
-      ]
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "id": 1,
+      "status": "new"
+    },
+    {
+      "dishIds": [
+        5,
+        5,
+        5,
+        5,
+        1
+      ],
+      "status": "done",
+      "id": 2
     }
   ],
   "users": [

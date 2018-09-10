@@ -15,7 +15,9 @@ export class AuthGuardService implements CanActivate {
     if (isLogged) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      // todo przenieść do seta
+      this.loginService.requestedPath = state.url;
+      this.router.navigate(['/login/']);
       return false;
     }
   }

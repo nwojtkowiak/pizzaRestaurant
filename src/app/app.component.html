@@ -3,12 +3,17 @@
   <h1>
     PIZZERIA
   </h1>
-  <img routerLink="/login" src="../assets/login.png" height="42" width="42">
+  <img  *ngIf="!isLogin" (click)="login()"  src="../assets/login.png" height="42" width="42">
+  <img  *ngIf="isLogin" (click)="logout()" src="../assets/logout.png" height="42" width="42">
 </div>
 <nav>
 
   <button type="button" class="button" (click)="navigateToMenu()">
     MENU
+  </button>
+
+  <button type="button" class="button" (click)="navigateToOrder()">
+    ORDERS
   </button>
 
 </nav>

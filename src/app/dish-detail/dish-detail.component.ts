@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {MenuService} from "../shared/menu.service";
-import {takeUntil} from "rxjs/operators";
-import {Dish} from "../shared/dish";
-import {Subscription} from "rxjs";
+import {MenuService} from "../shared/menu/menu.service";
+import {Dish} from "../shared/models/dish";
+import {Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-dish-detail',
   templateUrl: './dish-detail.component.html',
   styleUrls: ['./dish-detail.component.scss']
 })
-export class DishDetailComponent implements OnInit {
+export class DishDetailComponent implements OnInit, OnDestroy {
   dish: Dish;
   sub: Subscription;
+  private destroy$: Subject<void> = new Subject<void>();
+
   constructor(private readonly route: ActivatedRoute,
               private readonly menuService: MenuService) { }
 
@@ -27,6 +28,13 @@ export class DishDetailComponent implements OnInit {
   changeAvailability(dish: Dish) {
 
     this.menuService.changeAvailability(dish);
+  }
+
+  ngOnDestroy(): void {
+    /*zabic wszystkich*/
+    this.destroy$.next();
+    /*zabijamy siebie*/
+    this.destroy$.complete();
   }
 
 }

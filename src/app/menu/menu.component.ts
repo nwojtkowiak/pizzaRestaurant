@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnInit, Output, AfterViewChecked, OnDestroy} from '@angular/core';
-import {Dish} from '../shared/dish';
-import {MenuService} from '../shared/menu.service';
+import {Dish} from '../shared/models/dish';
+import {MenuService} from '../shared/menu/menu.service';
 import {Subject, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
-import {OrderService} from "../shared/order.service";
-import {LoginService} from "../shared/login.service";
+import {OrderService} from "../shared/order/order.service";
+import {LoginService} from "../shared/login/login.service";
 
 @Component({
   selector: 'app-menu',
@@ -38,8 +38,10 @@ export class MenuComponent implements OnInit, OnDestroy {
       login => this.login = login
     );
 
-    this.menuService.getDishes(true);
+    this.menuService.getDishes();
     this.order = [];
+    this.login = this.loginService.checkLogin();
+    this.menuService.getDishes();
   }
 
   getPizza(event: Event) {
@@ -48,7 +50,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getPizza(!this.login);
+    this.menuService.getPizza();
+
   }
 
   getNoodles(event: Event) {
@@ -57,7 +60,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getNoodles(!this.login);
+    this.menuService.getNoodles();
   }
 
   getDrinks(event: Event) {
@@ -66,14 +69,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     ).subscribe(
       dishes => this.dishes = dishes
     );
-    this.menuService.getDrinks(!this.login);
+    this.menuService.getDrinks();
   }
 
   addToBasket(dish: Dish) {
     /*this.menuService.getDish(id).subscribe(dish => this.basket.push(dish));
     this.orderId = this.menuService.addDishToBasket(this.orderId, id);*/
 
-    this.orderService.addToBasket(!this.login);
+    this.orderService.addToBasket(dish);
   }
 
   showDetail(dishId: number) {

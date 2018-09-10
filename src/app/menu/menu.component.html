@@ -3,7 +3,7 @@
 <button class="drinksBtn" type="button" (click)="getDrinks($event)">Drinks</button>
 <!--<button class="addBtn" type="button" (click)="addDish($event)">Add dish</button>-->
 <div class="basket">
-  <app-order></app-order>
+  <app-basket></app-basket>
 </div>
 
 
@@ -28,7 +28,7 @@
         <button [id]="'add' + dish.id" (click)="addToBasket(dish)">Add</button>
       </td>
       <td class="btn">
-        <button  [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
+        <button *ngIf="login" [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
       </td>
     </tr>
   </table>
