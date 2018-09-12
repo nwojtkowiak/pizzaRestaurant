@@ -1,9 +1,7 @@
 export interface Customer{
   firstName: string;
   lastName: string;
-  street: string;
-  building: number;
-  flat?: number;
+  address: string;
   phone: number;
   email: string;
 }

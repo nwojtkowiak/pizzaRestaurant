@@ -12,10 +12,10 @@ import {OrderDetailComponent} from "./order-detail/order-detail.component";
 const routes: Routes = [
   {path: 'menu', component: MenuComponent},
   {path: 'menu/:id', component: DishDetailComponent, canActivate: [AuthGuardService]},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, },
   {path: 'order', component: BasketComponent},
-  {path: 'orders', component: OrderComponent},
-  {path: 'orders/:id', component: OrderDetailComponent},
+  {path: 'orders', component: OrderComponent, canActivate: [AuthGuardService]},
+  {path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuardService]},
   {path: 'summary', component: SummaryComponent}
 ];
 

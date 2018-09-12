@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <h1 class="title">
     PIZZERIA
   </h1>
   <img  class="logBtn" *ngIf="!isLogin" (click)="login()"  src="../assets/login.png" height="42" width="42">
@@ -8,13 +8,14 @@
 </div>
 <nav>
 
-  <button type="button" class="button" (click)="navigateToMenu()">
+  <img  class="menuBtn"  (click)="navigateToMenu()"  src="../assets/menu.png" height="42" width="42">
+  <!--<button type="button" class="button" (click)="navigateToMenu()">
     MENU
-  </button>
-
-  <button *ngIf="isLogin" type="button" class="button" (click)="navigateToOrder()">
+  </button>-->
+  <img  *ngIf="isLogin" class="orderBtn"  (click)="navigateToOrder()"  src="../assets/orders.png" height="42" width="42">
+  <!--<button *ngIf="isLogin" type="button" class="button" (click)="navigateToOrder()">
     ORDERS
-  </button>
+  </button>-->
 
 </nav>
 <router-outlet></router-outlet>

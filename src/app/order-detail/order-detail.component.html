@@ -1,3 +1,4 @@
+<div *ngIf="show">
 <table class="dishes">
   <tr>
     <th>Id</th>
@@ -7,7 +8,7 @@
     <th>Price</th>
 
   </tr>
-  <tr *ngFor="let dish of dishes">
+  <tr *ngFor="let dish of dishes ">
     <td>{{dish.id}}</td>
     <td>{{dish.name}}</td>
     <td>{{dish.type}}</td>
@@ -15,21 +16,20 @@
     <td>{{dish.price}}</td>
   </tr>
 </table>
-<table class="address">
+<table class="customer" *ngIf="order.customer != undefined">
   <tr>
     <th>First name</th>
     <th>Last name</th>
     <th>Address</th>
     <th>Phone</th>
     <th>Email</th>
-
   </tr>
-  <tr *ngIf="customer">
-
-    <td>{{customer.firstName}}</td>
-    <td>{{customer.lastName}}</td>
-    <td>{{customer.street}}  {{customer.building}} {{customer.flat}}</td>
-    <td>{{customer.phone}}</td>
-    <td>{{customer.email}}</td>
+  <tr>
+    <td>{{order.customer.firstName}}</td>
+    <td>{{order.customer.lastName}}</td>
+    <td>{{order.customer.address}}</td>
+    <td>{{order.customer.phone}}</td>
+    <td>{{order.customer.email}}</td>
   </tr>
 </table>
+</div>

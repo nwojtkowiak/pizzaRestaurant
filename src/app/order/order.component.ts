@@ -11,6 +11,8 @@ import {Subject} from "rxjs";
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orders: Order[];
+  order: Order;
+  detail = false;
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private orderService: OrderService) {
@@ -26,7 +28,13 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   showDetail(order: Order) {
-    this.orderService.getOrder(order);
+    this.order = order;
+    this.detail = !this.detail;
+    if ( !this.detail ) {
+      this.orderService.hideOrder();
+    } else {
+      this.orderService.getOrder(order);
+    }
   }
 
   changeStatus(order: Order) {

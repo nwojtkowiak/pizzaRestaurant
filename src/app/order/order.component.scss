@@ -1,10 +1,10 @@
 th{
-  background-color: blue;
+  background-color: #4CAF50;
   color: white;
 }
 .basket{
   width: 100%;
-  border: blue solid ;
+
 
   table-layout: auto;
   border-collapse: collapse;
@@ -12,5 +12,14 @@ th{
 }
 .confirmBtn{
   float: right;
+}
+.btn{
+  background-color: #4CAF50;
+  border-radius: 8px;
+  color: white;
+}
+
+input{
+  width: 50px;
 }
 

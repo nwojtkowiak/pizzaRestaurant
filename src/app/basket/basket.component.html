@@ -1,4 +1,4 @@
-<table class="basket">
+<table class="basket" *ngIf="!login">
   <tr>
     <th>Id</th>
     <th>Name</th>
@@ -15,4 +15,6 @@
     <td>{{dish.price}}</td>
   </tr>
 </table>
-<button class="confirmBtn" *ngIf="basket.length>0" (click)="order()">Order</button>
+<img  class="confirmBtn" *ngIf="basket.length>0" (click)="order()"
+      src="../assets/order.png" height="42" width="42">
+<!--<button class="confirmBtn" *ngIf="basket.length>0" (click)="order()">Order</button>-->

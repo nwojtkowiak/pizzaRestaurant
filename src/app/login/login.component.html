@@ -1,6 +1,12 @@
+<div class="logForm">
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="user">User
-  <input type="password" formControlName="password">Password
-  <button type="submit">Login</button>
+  <table>
+  <tr><td>User: </td><td><input type="text" formControlName="user"></td></tr>
+
+  <tr><td>Password:  </td><td><input type="password" formControlName="password"></td></tr>
+
+  <tr class="btn"><td colspan="4"><button class="loginBtn" type="submit">Login</button></td></tr>
+  </table>
 </form>
+</div>
 

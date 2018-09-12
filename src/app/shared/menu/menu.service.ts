@@ -11,12 +11,13 @@ import {filter, map} from "rxjs/operators";
 })
 export class MenuService {
   dishes$ = new Subject<Dish[]>();
+  dish$ = new Subject<Dish>();
 
   constructor(readonly  httpClient: HttpClient, private loginService: LoginService) {
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.httpClient.get<Dish>('http://localhost:3000/dishes/' + id);
+    return this.httpClient.get<Dish>('http://localhost:3000/dishes/' + id);// .subscribe(res => this.dish$.next(res));
   }
 
   get(url: string) {

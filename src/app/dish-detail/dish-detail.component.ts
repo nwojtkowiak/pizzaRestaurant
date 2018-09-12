@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MenuService} from "../shared/menu/menu.service";
 import {Dish} from "../shared/models/dish";
 import {Subject, Subscription} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-dish-detail',
@@ -19,10 +20,7 @@ export class DishDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-
-    this.sub = this.menuService.getDish(+id)
-      .subscribe(dish => this.dish = dish);
-
+    this.sub = this.menuService.getDish(+id).subscribe( dish => this.dish = dish);
   }
 
   changeAvailability(dish: Dish) {

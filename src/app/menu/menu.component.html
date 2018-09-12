@@ -1,10 +1,14 @@
-<button class="pizzaBtn" type="button" (click)="getPizza($event)">Pizza</button>
-<button class="noodlesBtn" type="button" (click)="getNoodles($event)">Noodles</button>
-<button class="drinksBtn" type="button" (click)="getDrinks($event)">Drinks</button>
-<!--<button class="addBtn" type="button" (click)="addDish($event)">Add dish</button>-->
-<div class="basket">
-  <app-basket></app-basket>
+<div class="menuBtns">
+<button class="menuBtn" type="button" (click)="getPizza($event)">Pizza</button>
+<!--<img  class="pizzaBtn"  (click)="getPizza($event)"
+      src="../assets/pizza.png" height="42" width="42">-->
+<button class="menuBtn" type="button" (click)="getNoodles($event)">Noodles</button>
+<!--<img  class="noodlesBtn"  (click)="getNoodles($event)"
+      src="../assets/noodles.png" height="42" width="42">-->
+<button class="menuBtn" type="button" (click)="getDrinks($event)">Drinks</button>
 </div>
+
+
 
 
 <div class="menuTable">
@@ -25,13 +29,18 @@
       <td>{{dish.description}}</td>
       <td>{{dish.price}}</td>
       <td class="btn">
-        <button [id]="'add' + dish.id" (click)="addToBasket(dish)">Add</button>
-      </td>
-      <td class="btn">
-        <button *ngIf="login" [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>
+        <img   [id]="'add' + dish.id" *ngIf="!login" (click)="addToBasket(dish)"
+              src="../assets/add.png" height="42" width="42">
+        <img  [id]="'detail' + dish.id" *ngIf="login" (click)="showDetail(dish.id)"
+              src="../assets/details.png" height="42" width="42">
+        <!--<button *ngIf="!login" [id]="'add' + dish.id" (click)="addToBasket(dish)">Add</button>-->
+        <!--<button *ngIf="login" [id]="'detail' + dish.id" (click)="showDetail(dish.id)">Detail</button>-->
       </td>
     </tr>
   </table>
+</div>
+<div class="basket" *ngIf="!login">
+  <app-basket></app-basket>
 </div>
 
 

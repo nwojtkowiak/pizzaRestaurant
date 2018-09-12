@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {takeUntil} from "rxjs/operators";
 import {OrderService} from "../shared/order/order.service";
 import {Order} from "../shared/models/order";
@@ -12,9 +12,11 @@ import {Customer} from "../shared/models/customer";
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
-  order: Order = {} as Order;
+  @Input() order: Order = {} as Order;
+  @Input()show: boolean;
   dishes: Dish[] = [];
   customer: Customer = {} as Customer;
+
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private orderService: OrderService) { }
@@ -29,14 +31,14 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.orderService.dish$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(
-      dish => this.dishes.push(dish)
+      dish => {
+        if ( dish != null) {
+          this.dishes.push(dish);
+        } else {
+          this.dishes = [];
+        }}
     );
 
-    this.orderService.customer$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      customer => this.customer = customer
-    );
   }
 
   ngOnDestroy(): void {

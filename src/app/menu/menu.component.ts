@@ -80,7 +80,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   showDetail(dishId: number) {
     this.router.navigate(['/menu', dishId]);
-
   }
 
   addDish(event: Event) {

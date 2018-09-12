@@ -14,7 +14,6 @@ import {map} from "rxjs/operators";
 export class LoginService {
   private isLogin = false;
   login$: Subject<boolean> = new Subject();
-  user$: Observable<User> = new Observable();
   requestedPath: string;
   constructor(private router: Router, private readonly httpClient: HttpClient) {
   }
@@ -28,7 +27,7 @@ export class LoginService {
      const user = users.pop();
       if (user.password === password) {
         this.isLogin = true;
-        this.router.navigate(['/menu']);
+        // this.router.navigate(['/']);
       } else {
         this.isLogin = false;
         this.router.navigate(['/login']);

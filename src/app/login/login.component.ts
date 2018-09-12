@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoginService} from "../shared/login/login.service";
 import {Subject} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -18,18 +19,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: new FormControl('', Validators.required),
     });
 
-  constructor(private loginService: LoginService) { }
+  constructor(private location: Location, private loginService: LoginService) {
+  }
 
   ngOnInit() {
-    /*this.loginForm.setValue(['user', 'admin']);
-    this.loginForm.setValue(['password', 'admin']);*/
   }
 
   login() {
     const user = this.loginForm.get('user').value;
     const password = this.loginForm.get('password').value;
-    this.loginService.requestedPath = '/';
+    // this.loginService.requestedPath = '/';
     this.loginService.login(user, password);
+    this.location.back();
   }
 
   onSubmit() {

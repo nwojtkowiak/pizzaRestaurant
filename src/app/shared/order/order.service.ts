@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {map} from "rxjs/operators";
 import {MenuService} from "../menu/menu.service";
 import {Customer} from "../models/customer";
+import {FormControl} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -26,26 +27,30 @@ export class OrderService {
   addToBasket(dish) {
     this.basket$.next(dish);
   }
-  addOrder(basket: Dish[]) {
+  addOrder(basket: Dish[], customer: Customer) {
     const order: Order = {} as Order;
     order.dishIds = [];
     order.status = 'new';
+    order.customer = customer;
+
     basket.map(b => b.id).forEach(element => order.dishIds.push(element));
 
     this.httpClient.post<Order>('http://localhost:3000/orders', order).subscribe(
       res => console.log(res.id) );
     localStorage.setItem('basket', JSON.stringify([]));
   }
+
   confirmOrder() {
     this.router.navigate(['/summary']);
   }
 
   getOrder(order: Order) {
-    /*this.httpClient.get<Order>('http://localhost:3000/orders/' + id).subscribe(res => this.order$.next(res));*/
-    order.dishIds.forEach( dishId => this.menuService.getDish(dishId).subscribe(dish => this.dish$.next(dish)));
-    this.router.navigate(['orders/', order.id]);
-    this.customer$.next(order.customer);
-
+    order.dishIds.forEach( dishId => this.menuService.getDish(dishId).subscribe(res => this.dish$.next(res)));
+    // this.router.navigate(['orders/', order.id]);
+  }
+  hideOrder() {
+    this.dish$.next(null);
+    // this.router.navigate(['orders/', order.id]);
   }
 
   getOrders() {

@@ -1,21 +1,25 @@
 <div class="form">
-<form  [formGroup]="" (ngSubmit)="submit()">
+<form  [formGroup]="addressForm" (ngSubmit)="onSubmit()">
   <table>
     <tr>
       <td>First name:</td>
-      <td><input type="text"></td>
+      <td><input type="text" formControlName="firstName"></td>
     </tr>
     <tr>
       <td>Last name:</td>
-      <td><input type="text"></td>
+      <td><input type="text" formControlName="lastName"></td>
     </tr>
     <tr>
       <td>Address:</td>
-      <td><input type="text"></td>
+      <td><input type="text" formControlName="address"></td>
     </tr>
     <tr>
       <td>Phone:</td>
-      <td><input type="text"></td>
+      <td><input type="text" formControlName="phone"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" formControlName="email"></td>
     </tr>
   </table>
   <button class="confirmBtn" type="submit">Submit</button>

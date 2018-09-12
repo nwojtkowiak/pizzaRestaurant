@@ -1,24 +1,43 @@
-.menu{
+.menu {
   align-content: center;
   justify-content: center;
   width: 100%;
 }
-th{
+
+th {
   background-color: #4CAF50;
   color: white;
 }
-.btn{
+
+.btn {
   background-color: white;
   width: 50px;
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
-.menuTable{
-  width: 70%;
 
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.menuTable {
+  width: 70%;
   float: right;
 }
-.basket{
+
+.basket {
   float: left;
   width: 30%;
   /*min-width: border-box;*/
+}
+
+.menuBtn {
+  background-color: #4CAF50;
+  border-radius: 8px;
+  color: white;
+
+}
+.menuBtns{
+  justify-content: space-around;
+  text-align: center;
+  width: 70%;
+  float: right;
 }

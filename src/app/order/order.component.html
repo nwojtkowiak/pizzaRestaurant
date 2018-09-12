@@ -10,13 +10,26 @@
       <td>{{order.id}}</td>
       <td>{{order.dishIds}}</td>
       <td>{{order.status}}</td>
-      <td class="btn">
-        <button [id]="'detailBtn' + order.id" (click)="showDetail(order)">Detail</button>
+      <td >
+        <img  [id]="'detailBtn' + order.id"  (click)="showDetail(order)"
+              src="../assets/details.png" height="30" width="30">
+       <!-- <button  (click)="showDetail(order)">Detail</button>-->
       </td>
-      <td class="btn">
-        <input [id]="'status' + order.id" type="text">
-        <button [id]="'statusBtn' + order.id" (click)="changeStatus(order)">Change status</button>
+      <td >
+        <!--<input  [id]="'status' + order.id" type="text">-->
+        <select [id]="'status' + order.id" name="cars" >
+          <option value="new">New</option>
+          <option value="preparing">Preparing</option>
+          <option value="wait">Wait</option>
+          <option value="delivering">Delivering</option>
+          <option value="delivered">Delivered</option>
+        </select>
+        <button class="btn" [id]="'statusBtn' + order.id" (click)="changeStatus(order)">Change status</button>
       </td>
+
     </tr>
+
   </table>
 </div>
+<app-order-detail [order]="order" [show]="detail"></app-order-detail>
+
