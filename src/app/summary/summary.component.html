@@ -1,1 +1,23 @@
-<button class="confirmBtn"  (click)="submit()">Submit</button>
+<div class="form">
+<form  [formGroup]="" (ngSubmit)="submit()">
+  <table>
+    <tr>
+      <td>First name:</td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>Last name:</td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td><input type="text"></td>
+    </tr>
+  </table>
+  <button class="confirmBtn" type="submit">Submit</button>
+</form>
+</div>

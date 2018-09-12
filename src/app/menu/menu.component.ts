@@ -38,7 +38,6 @@ export class MenuComponent implements OnInit, OnDestroy {
       login => this.login = login
     );
 
-    this.menuService.getDishes();
     this.order = [];
     this.login = this.loginService.checkLogin();
     this.menuService.getDishes();
@@ -88,6 +87,10 @@ export class MenuComponent implements OnInit, OnDestroy {
     const dish: Dish = {price: 50, description: 'ser, kurczak, kukurydza, ananas',
       isAvailable: true, name: 'wykoksana pizza', type: 'pizza'};
     this.menuService.addDish(dish);
+  }
+
+  getDishes() {
+    this.menuService.getDishes();
   }
 
   ngOnDestroy(): void {

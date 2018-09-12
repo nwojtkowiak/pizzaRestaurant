@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   changeStatus(order: Order) {
-    const status = document.getElementById('status' + order.id).value;
+    const status = (document.getElementById('status' + order.id) as HTMLInputElement).value;
     order.status = status;
     this.orderService.changeStatus(order);
   }
