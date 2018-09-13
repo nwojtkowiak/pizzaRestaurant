@@ -15,8 +15,8 @@ import {LoginService} from "../shared/login/login.service";
 export class MenuComponent implements OnInit, OnDestroy {
   @Output() pizza = new EventEmitter<Dish>();
   private destroy$: Subject<void> = new Subject<void>();
-  dishes: Dish[];
-  order: Dish[];
+  dishes: Dish[] = [];
+  order: Dish[] = [];
   login = false;
 
   constructor(public readonly menuService: MenuService,
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.getDishes();
   }
 
-  getPizza(event: Event) {
+  getPizza() {
     this.menuService.dishes$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(
@@ -53,7 +53,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   }
 
-  getNoodles(event: Event) {
+  getNoodles() {
     this.menuService.dishes$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(
@@ -62,7 +62,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.getNoodles();
   }
 
-  getDrinks(event: Event) {
+  getDrinks() {
     this.menuService.dishes$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(

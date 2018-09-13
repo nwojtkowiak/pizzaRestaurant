@@ -6,7 +6,7 @@ import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {Dish} from "../shared/models/dish";
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {LoginService} from "../shared/login/login.service";
 import {Router} from "@angular/router";
 import {OrderService} from "../shared/order/order.service";
@@ -18,9 +18,28 @@ describe('MenuComponent', () => {
   let orderService: OrderService;
   let router: Router;
 
+  const mockedDishes: Dish[] = [{
+    description: 'testowe skladniki',
+    id: 1,
+    isAvailable: true,
+    name: 'testowe danie',
+    price: 100000,
+    type: 'pizza'
+  }, {
+    description: 'testowe skladniki',
+    id: 2,
+    isAvailable: false,
+    name: 'testowe danie',
+    price: 100000,
+    type: 'pizza'
+  }];
+
   const menuServiceMock = {
     getDishes: jasmine.createSpy('getDishes'),
-    dishes$: new Subject<Dish[]>(),
+    dishes$: new BehaviorSubject<Dish[]>(mockedDishes),
+    getPizza: jasmine.createSpy('getPizza'),
+    getDrinks: jasmine.createSpy('getDrinks'),
+    getNoodles: jasmine.createSpy('getNoodles')
   };
 
   const orderServiceMock = {
@@ -60,12 +79,45 @@ describe('MenuComponent', () => {
     fixture.detectChanges();
   });
 
+
+
   it('should get dishes', () => {
     // when
     component.getDishes();
     // then
     expect(menuService.getDishes).toHaveBeenCalled();
   });
+
+  it('should get pizza when getPizza', () => {
+    // given
+    const dishes = component.dishes = [];
+    // when
+    component.getPizza();
+    // then
+    expect(menuService.getDishes).toHaveBeenCalled();
+    expect(component.dishes.length).toBeGreaterThan(dishes.length);
+  });
+
+  it('should get drinks when getDrink', () => {
+    // given
+    const dishes = component.dishes = [];
+    // when
+    component.getDrinks();
+    // then
+    expect(menuService.getDrinks).toHaveBeenCalled();
+    expect(component.dishes.length).toBeGreaterThan(dishes.length);
+  });
+
+  it('should get noodles when getNoodles', () => {
+    // given
+    const dishes = component.dishes = [];
+    // when
+    component.getNoodles();
+    // then
+    expect(menuService.getNoodles).toHaveBeenCalled();
+    expect(component.dishes.length).toBeGreaterThan(dishes.length);
+  });
+
 
 
   it('should call menu after showDetail', () => {
@@ -77,11 +129,13 @@ describe('MenuComponent', () => {
 
   it('should call addToBasket', () => {
     // give
-    let dish: Dish;
+    const dish: Dish = {} as Dish;
     // when
     component.addToBasket(dish);
     // then
     expect(orderService.addToBasket).toHaveBeenCalled();
   });
+
+
 
 });

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Dish} from '../models/dish';
 import {LoginService} from "../login/login.service";
 import {map} from "rxjs/operators";
@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class MenuService {
-  dishes$ = new Subject<Dish[]>();
+  dishes$ = new BehaviorSubject<Dish[]>(null);
 
   constructor(private readonly httpClient: HttpClient, private readonly loginService: LoginService) {
   }
@@ -21,14 +21,11 @@ export class MenuService {
   get(url: string) {
     const dishesObs = this.httpClient.get<Dish[]>(url);
     if (!this.loginService.checkLogin()) {
-      dishesObs.pipe( map((
-        dishes: Dish[]) =>
+      dishesObs.pipe( map((dishes: Dish[]) =>
         dishes.filter(dish => dish.isAvailable))
-      ).subscribe(res => {this.dishes$.next(res); console.log(3);});
+      ).subscribe(res => this.dishes$.next(res));
     } else {
-      dishesObs.subscribe(res => {
-        this.dishes$.next(res);
-      });
+      dishesObs.subscribe(res => { this.dishes$.next(res); });
     }
   }
   getDishes() {
