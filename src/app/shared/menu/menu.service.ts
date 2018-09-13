@@ -2,22 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Dish} from '../models/dish';
-import {OrderService} from '../order/order.service';
 import {LoginService} from "../login/login.service";
-import {filter, map} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
   dishes$ = new Subject<Dish[]>();
-  dish$ = new Subject<Dish>();
 
-  constructor(readonly  httpClient: HttpClient, private loginService: LoginService) {
+  constructor(private readonly httpClient: HttpClient, private readonly loginService: LoginService) {
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.httpClient.get<Dish>('http://localhost:3000/dishes/' + id);// .subscribe(res => this.dish$.next(res));
+    return this.httpClient.get<Dish>('http://localhost:3000/dishes/' + id);
   }
 
   get(url: string) {
@@ -26,7 +24,7 @@ export class MenuService {
       dishesObs.pipe( map((
         dishes: Dish[]) =>
         dishes.filter(dish => dish.isAvailable))
-      ).subscribe(res => this.dishes$.next(res));
+      ).subscribe(res => {this.dishes$.next(res); console.log(3);});
     } else {
       dishesObs.subscribe(res => {
         this.dishes$.next(res);
@@ -53,12 +51,6 @@ export class MenuService {
     dish.isAvailable = !dish.isAvailable;
     this.httpClient.put<Dish>('http://localhost:3000/dishes/' + dish.id, dish)
       .subscribe(res => this.getDishes());
-  }
-
-  addDish(dish: Dish) {
-    this.httpClient.post('http://localhost:3000/dishes', dish).subscribe(
-      res => this.getDishes()
-    );
   }
 
 }

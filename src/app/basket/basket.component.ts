@@ -4,6 +4,8 @@ import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {OrderService} from "../shared/order/order.service";
 import {Dish} from "../shared/models/dish";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
@@ -14,7 +16,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   basket: Dish[] = [];
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private orderService: OrderService, private menuService: MenuService) {
+  constructor(private readonly orderService: OrderService, private readonly router: Router) {
   }
 
   ngOnInit() {
@@ -37,6 +39,9 @@ export class BasketComponent implements OnInit, OnDestroy {
     );
   }
 
+  order() {
+    this.router.navigate(['/summary']);
+  }
 
   ngOnDestroy(): void {
     /*zabic wszystkich*/
@@ -45,9 +50,7 @@ export class BasketComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  order() {
-    this.orderService.confirmOrder();
-  }
+
 
 
 }

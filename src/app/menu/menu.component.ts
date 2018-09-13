@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, AfterViewChecked, OnDestroy} from '@angular/core';
 import {Dish} from '../shared/models/dish';
 import {MenuService} from '../shared/menu/menu.service';
-import {Subject, Subscription} from 'rxjs';
+import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {OrderService} from "../shared/order/order.service";
@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(public readonly menuService: MenuService,
               private readonly orderService: OrderService,
               private readonly loginService: LoginService,
-              private router: Router) {  }
+              private readonly router: Router) {  }
 
   ngOnInit() {
 
@@ -72,20 +72,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   addToBasket(dish: Dish) {
-    /*this.menuService.getDish(id).subscribe(dish => this.basket.push(dish));
-    this.orderId = this.menuService.addDishToBasket(this.orderId, id);*/
-
     this.orderService.addToBasket(dish);
   }
 
   showDetail(dishId: number) {
     this.router.navigate(['/menu', dishId]);
-  }
-
-  addDish(event: Event) {
-    const dish: Dish = {price: 50, description: 'ser, kurczak, kukurydza, ananas',
-      isAvailable: true, name: 'wykoksana pizza', type: 'pizza'};
-    this.menuService.addDish(dish);
   }
 
   getDishes() {

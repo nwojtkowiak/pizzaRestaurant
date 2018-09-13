@@ -19,7 +19,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private orderService: OrderService) { }
+  constructor(private readonly orderService: OrderService) { }
 
   ngOnInit() {
     this.orderService.order$.pipe(

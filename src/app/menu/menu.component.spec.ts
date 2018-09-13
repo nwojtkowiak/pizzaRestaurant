@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MenuComponent } from './menu.component';
+import {MenuComponent} from './menu.component';
 import {MenuService} from "../shared/menu/menu.service";
-import {BasketComponent} from "../basket/basket.component";
-import {HttpClient, HttpHandler} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {Dish} from "../shared/models/dish";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {LoginService} from "../shared/login/login.service";
+import {Router} from "@angular/router";
+import {OrderService} from "../shared/order/order.service";
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
-  let service: MenuService;
-/*(Observable.of(Dish[]))*/
+  let menuService: MenuService;
+  let orderService: OrderService;
+  let router: Router;
+
   const menuServiceMock = {
     getDishes: jasmine.createSpy('getDishes'),
     dishes$: new Subject<Dish[]>(),
+  };
+
+  const orderServiceMock = {
+    addToBasket: jasmine.createSpy('addToBasket'),
   };
 
   const loginServiceMock = {
@@ -27,12 +32,18 @@ describe('MenuComponent', () => {
     checkLogin: jasmine.createSpy('checkLogin')
   };
 
+  const routereMock = {
+    navigate: jasmine.createSpy('navigate')
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ MenuComponent ],
       providers: [{provide: MenuService, useValue: menuServiceMock},
-        {provide: LoginService, useValue: loginServiceMock}
+        {provide: OrderService, useValue: orderServiceMock},
+        {provide: LoginService, useValue: loginServiceMock},
+        {provide: Router, useValue: routereMock}
       ],
 
       imports: [RouterTestingModule, HttpClientTestingModule]
@@ -43,18 +54,34 @@ describe('MenuComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
-    service = TestBed.get(MenuService);
+    menuService = TestBed.get(MenuService);
+    orderService = TestBed.get(OrderService);
+    router = TestBed.get(Router);
     fixture.detectChanges();
   });
-
-  /*it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
 
   it('should get dishes', () => {
     // when
     component.getDishes();
     // then
-    expect(service.getDishes).toHaveBeenCalled();
+    expect(menuService.getDishes).toHaveBeenCalled();
   });
+
+
+  it('should call menu after showDetail', () => {
+    // when
+    component.showDetail(1);
+    // then
+    expect(router.navigate).toHaveBeenCalledWith(['/menu', 1]);
+  });
+
+  it('should call addToBasket', () => {
+    // give
+    let dish: Dish;
+    // when
+    component.addToBasket(dish);
+    // then
+    expect(orderService.addToBasket).toHaveBeenCalled();
+  });
+
 });

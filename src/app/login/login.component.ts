@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: new FormControl('', Validators.required),
     });
 
-  constructor(private location: Location, private loginService: LoginService) {
+  constructor(private readonly location: Location, private readonly loginService: LoginService) {
   }
 
   ngOnInit() {
