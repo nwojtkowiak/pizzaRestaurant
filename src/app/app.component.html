@@ -5,6 +5,7 @@
   </h1>
   <img  class="logBtn" *ngIf="!isLogin" (click)="login()"  src="../assets/login.png" height="42" width="42">
   <img  class="logBtn" *ngIf="isLogin" (click)="logout()" src="../assets/logout.png" height="42" width="42">
+
 </div>
 <nav>
 
@@ -13,6 +14,7 @@
     MENU
   </button>-->
   <img  *ngIf="isLogin" class="orderBtn"  (click)="navigateToOrder()"  src="../assets/orders.png" height="42" width="42">
+  <img  *ngIf="isLogin" class="orderBtn"  (click)="addDish()" src="../assets/addDish.png" height="40" width="40">
   <!--<button *ngIf="isLogin" type="button" class="button" (click)="navigateToOrder()">
     ORDERS
   </button>-->

@@ -8,6 +8,7 @@ import {LoginComponent} from "./login/login.component";
 import {SummaryComponent} from "./summary/summary.component";
 import {OrderComponent} from "./order/order.component";
 import {OrderDetailComponent} from "./order-detail/order-detail.component";
+import {FormDishComponent} from "./form-dish/form-dish.component";
 
 const routes: Routes = [
   {path: 'menu', component: MenuComponent},
@@ -16,7 +17,9 @@ const routes: Routes = [
   {path: 'order', component: BasketComponent},
   {path: 'orders', component: OrderComponent, canActivate: [AuthGuardService]},
   {path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuardService]},
-  {path: 'summary', component: SummaryComponent}
+  {path: 'summary', component: SummaryComponent},
+  {path: 'edit', component: FormDishComponent, canActivate: [AuthGuardService]},
+  {path: 'add', component: FormDishComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

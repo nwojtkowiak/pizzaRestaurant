@@ -3,7 +3,7 @@ import {Dish} from '../shared/models/dish';
 import {MenuService} from '../shared/menu/menu.service';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
+import {map, takeUntil, tap} from 'rxjs/operators';
 import {OrderService} from "../shared/order/order.service";
 import {LoginService} from "../shared/login/login.service";
 
@@ -73,6 +73,10 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   addToBasket(dish: Dish) {
     this.orderService.addToBasket(dish);
+  }
+
+  addDish() {
+    this.router.navigate(['/add']);
   }
 
   showDetail(dishId: number) {

@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../shared/menu/menu.service";
 import {Dish} from "../shared/models/dish";
 import {Subject, Subscription} from "rxjs";
-import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-dish-detail',
@@ -15,17 +14,26 @@ export class DishDetailComponent implements OnInit, OnDestroy {
   sub: Subscription;
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private readonly route: ActivatedRoute,
+  constructor(private readonly activeRoute: ActivatedRoute,
+              private readonly route: Router,
               private readonly menuService: MenuService) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.activeRoute.snapshot.paramMap.get('id');
     this.sub = this.menuService.getDish(+id).subscribe( dish => this.dish = dish);
   }
 
   changeAvailability(dish: Dish) {
-
     this.menuService.changeAvailability(dish);
+  }
+
+  edit(dish: Dish) {
+    this.route.navigate(['edit', dish]);
+  }
+
+  delete(dish: Dish) {
+    this.menuService.deleteDish(dish);
+    this.route.navigate(['menu']);
   }
 
   ngOnDestroy(): void {

@@ -36,6 +36,11 @@ export class OrderService {
     localStorage.setItem('basket', JSON.stringify([]));
   }
 
+  deleteOrder(order: Order) {
+    this.httpClient.delete('http://localhost:3000/orders/' + order.id).subscribe(
+      res => this.getOrders());
+  }
+
   getOrder(order: Order) {
     order.dishIds.forEach( dishId => this.menuService.getDish(dishId).subscribe(res => this.dish$.next(res)));
   }

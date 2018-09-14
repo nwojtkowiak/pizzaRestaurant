@@ -25,6 +25,7 @@
           <option value="delivered">Delivered</option>
         </select>
         <button class="btn" [id]="'statusBtn' + order.id" (click)="changeStatus(order)">Change status</button>
+        <button class="btn" [id]="'deleteBtn' + order.id" (click)="delete(order)">Delete</button>
       </td>
 
     </tr>

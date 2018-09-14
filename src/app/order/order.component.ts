@@ -3,6 +3,7 @@ import {Order} from "../shared/models/order";
 import {takeUntil} from "rxjs/operators";
 import {OrderService} from "../shared/order/order.service";
 import {Subject} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order',
@@ -15,7 +16,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   detail = false;
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private readonly orderService: OrderService) {
+  constructor(private readonly orderService: OrderService,
+              private readonly router: Router) {
   }
 
   ngOnInit() {
@@ -35,6 +37,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     } else {
       this.orderService.getOrder(order);
     }
+  }
+
+  delete(order: Order) {
+    this.orderService.deleteOrder(order);
+    this.router.navigate(['/orders']);
   }
 
   changeStatus(order: Order) {

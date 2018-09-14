@@ -12,6 +12,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { OrderComponent } from './order/order.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormDishComponent } from './form-dish/form-dish.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     SummaryComponent,
     OrderComponent,
     OrderDetailComponent,
+    FormDishComponent,
   ],
   imports: [
     BrowserModule,

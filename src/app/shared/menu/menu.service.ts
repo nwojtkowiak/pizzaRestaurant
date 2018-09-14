@@ -50,4 +50,19 @@ export class MenuService {
       .subscribe(res => this.getDishes());
   }
 
+  addDish(dish: Dish) {
+    this.httpClient.post('http://localhost:3000/dishes', dish).subscribe(
+      res => this.getDishes());
+  }
+
+  editDish(dish: Dish) {
+    this.httpClient.put('http://localhost:3000/dishes/' + dish.id, dish).subscribe(
+      res => this.getDishes());
+  }
+
+  deleteDish(dish: Dish) {
+    this.httpClient.delete('http://localhost:3000/dishes/' + dish.id).subscribe(
+      res => this.getDishes());
+  }
+
 }

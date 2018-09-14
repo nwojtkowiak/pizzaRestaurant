@@ -45,6 +45,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  addDish() {
+    this.router.navigate(['/add']);
+  }
+
   logout() {
     this.loginService.requestedPath = this.router.url;
     this.loginService.logout();
