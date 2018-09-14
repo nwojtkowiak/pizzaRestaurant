@@ -47,21 +47,22 @@ export class MenuService {
   changeAvailability(dish: Dish) {
     dish.isAvailable = !dish.isAvailable;
     this.httpClient.put<Dish>('http://localhost:3000/dishes/' + dish.id, dish)
-      .subscribe(res => this.getDishes());
+      .subscribe(res => { this.getDishes();  });
   }
 
   addDish(dish: Dish) {
-    this.httpClient.post('http://localhost:3000/dishes', dish).subscribe(
-      res => this.getDishes());
+    this.httpClient.post<Dish>('http://localhost:3000/dishes', dish).subscribe(
+      res => {this.getDishes(); });
+
   }
 
   editDish(dish: Dish) {
-    this.httpClient.put('http://localhost:3000/dishes/' + dish.id, dish).subscribe(
+    this.httpClient.put<Dish>('http://localhost:3000/dishes/' + dish.id, dish).subscribe(
       res => this.getDishes());
   }
 
   deleteDish(dish: Dish) {
-    this.httpClient.delete('http://localhost:3000/dishes/' + dish.id).subscribe(
+    this.httpClient.delete<Dish>('http://localhost:3000/dishes/' + dish.id).subscribe(
       res => this.getDishes());
   }
 

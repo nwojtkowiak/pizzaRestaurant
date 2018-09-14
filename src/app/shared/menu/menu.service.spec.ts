@@ -11,10 +11,6 @@ import {LoginService} from "../login/login.service";
 describe('MenuService', () => {
   let menuService: MenuService;
   let loginService: LoginService;
-  /*const loginServiceMock = {
-    login$: new BehaviorSubject<boolean>(true),
-    checkLogin: jasmine.createSpy('checkLogin').and.returnValue(true),
-  };*/
 
   const mockedDish: Dish = {
     description: 'testowe skladniki',
@@ -229,11 +225,37 @@ describe('MenuService', () => {
   }));
 
   it('should call get', fakeAsync(() => {
-    // given
-    const isAvailable = mockedDish.isAvailable;
     // when
     menuService.get('http://localhost:3000/dishes/');
     mockBackend.expectOne('http://localhost:3000/dishes/');
+
+  }));
+
+  it('should add dish when addDish', fakeAsync(() => {
+    // given
+
+    let dishes = [];
+    // when
+    menuService.dishes$.subscribe(res => dishes = res);
+    menuService.addDish(mockedDish);
+    mockBackend.expectOne('http://localhost:3000/dishes').flush(mockedDishes);
+
+    expect(dishes.length).toBeGreaterThanOrEqual(0);
+
+  }));
+
+  it('should edit dish when editDish', fakeAsync(() => {
+
+    // when
+    menuService.editDish(mockedDish);
+    mockBackend.expectOne("http://localhost:3000/dishes/" + mockedDish.id);
+
+  }));
+
+  it('should delete dish when deleteDish', fakeAsync(() => {
+    // when
+    menuService.deleteDish(mockedDish);
+    mockBackend.expectOne('http://localhost:3000/dishes/' + mockedDish.id);
 
   }));
 
