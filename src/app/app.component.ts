@@ -18,9 +18,6 @@ export class AppComponent implements OnInit {
 
   constructor( private router: Router, private loginService: LoginService,
                private menuService: MenuService, private orderService: OrderService) {
-    /*setTimeout(() => {
-      this.show = true;
-    }, 10000);*/
 
   }
   ngOnInit() {
@@ -53,5 +50,7 @@ export class AppComponent implements OnInit {
     this.loginService.requestedPath = this.router.url;
     this.loginService.logout();
     this.isLogin = this.loginService.checkLogin();
+    this.menuService.getDishes();
+    this.router.navigate(['menu']);
   }
 }

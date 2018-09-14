@@ -48,6 +48,7 @@ export class MenuService {
     dish.isAvailable = !dish.isAvailable;
     this.httpClient.put<Dish>('http://localhost:3000/dishes/' + dish.id, dish)
       .subscribe(res => { this.getDishes();  });
+
   }
 
   addDish(dish: Dish) {

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const password = this.loginForm.get('password').value;
     // this.loginService.requestedPath = '/';
     this.loginService.login(user, password);
-    this.location.back();
+    // this.location.back();
   }
 
   onSubmit() {

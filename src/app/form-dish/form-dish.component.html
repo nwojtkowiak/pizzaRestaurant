@@ -7,7 +7,14 @@
       </tr>
       <tr>
         <td>Type:</td>
-        <td><input type="text" formControlName="type"></td>
+        <td><!--<input type="text" formControlName="type">-->
+          <select formControlName="type" >
+            <option value="pizza">Pizza</option>
+            <option value="noodles">Noodles</option>
+            <option value="drinks">Drinks</option>
+          </select>
+        </td>
+
       </tr>
       <tr>
         <td>Description:</td>
@@ -19,7 +26,12 @@
       </tr>
       <tr>
         <td>Available:</td>
-        <td><input type="text" formControlName="isAvailable"></td>
+        <td><!--<input type="text" formControlName="isAvailable">-->
+          <select formControlName="isAvailable" >
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        </td>
       </tr>
     </table>
     <button class="confirmBtn" type="submit">Submit</button>

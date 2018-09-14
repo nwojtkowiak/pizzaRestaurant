@@ -42,7 +42,7 @@ export class FormDishComponent implements OnInit {
       }
       this.router.navigate(['/menu']);
     } else {
-      alert("Fields can't be empty");
+      alert("Invalid input data");
     }
   }
 

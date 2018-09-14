@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
+import {Location} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LoginService {
    login$: BehaviorSubject<boolean> = new BehaviorSubject(this.isLogin);
   requestedPath: string;
 
-  constructor(private readonly router: Router, private readonly httpClient: HttpClient) {
+  constructor(private readonly router: Router, private readonly httpClient: HttpClient, private readonly location: Location) {
   }
 
   getUser(user: string): Observable<User[]> {
@@ -24,6 +25,7 @@ export class LoginService {
      const user = users.pop();
       if (user.password === password) {
         this.isLogin = true;
+        this.location.back();
       } else {
         this.isLogin = false;
         this.router.navigate(['/login']);
@@ -35,17 +37,10 @@ export class LoginService {
 
   logout() {
     this.isLogin = false;
-     this.login$.next(this.isLogin);
-    this.router.navigate([this.requestedPath]);
-    this.requestedPath = '';
+    this.login$.next(this.isLogin);
   }
 
   checkLogin() {
     return this.isLogin;
   }
-
-  changeLogin() {
-    this.isLogin = !this.isLogin;
-  }
-
 }

@@ -5,7 +5,7 @@
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #0074D9;/*#4CAF50;*/
   color: white;
 }
 
@@ -19,18 +19,21 @@ tr:nth-child(even) {
 }
 
 .menuTable {
-  width: 70%;
+  width: 60%;
   float: right;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .basket {
   float: left;
-  width: 30%;
+  width: 25%;
+  margin-left: 5%;
   /*min-width: border-box;*/
 }
 
 .menuBtn {
-  background-color: #4CAF50;
+  background-color: #0074D9;/*#4CAF50;*/
   border-radius: 8px;
   color: white;
 
@@ -41,3 +44,4 @@ tr:nth-child(even) {
   width: 70%;
   float: right;
 }
+
