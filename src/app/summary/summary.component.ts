@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from "../shared/order/order.service";
 import {Dish} from "../shared/models/dish";
-import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -12,7 +11,7 @@ import {Customer} from "../shared/models/customer";
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService, private  router: Router) {
   }
@@ -47,6 +46,13 @@ export class SummaryComponent implements OnInit {
     } else {
       alert("Fields can't be empty");
     }
+  }
+
+  ngOnDestroy(): void {
+    /*zabic wszystkich*/
+    this.destroy$.next();
+    /*zabijamy siebie*/
+    this.destroy$.complete();
   }
 
 }

@@ -1,17 +1,16 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
 import {Location} from "@angular/common";
-import {passBoolean} from "protractor/built/util";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-   private isLogin = false;
-   login$: BehaviorSubject<boolean> = new BehaviorSubject(this.isLogin);
+export class LoginService implements OnDestroy {
+  private isLogin = false;
+  login$: BehaviorSubject<boolean> = new BehaviorSubject(this.isLogin);
   requestedPath: string;
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -28,7 +27,7 @@ export class LoginService {
 
   login(user: string, password: string) {
     this.getUser(user).subscribe(users => {
-     const user = users.pop();
+      const user = users.pop();
       if (user.password === password) {
         this.isLogin = true;
         this.location.back();
@@ -37,7 +36,7 @@ export class LoginService {
         this.router.navigate(['/login']);
         alert('Your credentials are wrong :(');
       }
-       this.login$.next(this.isLogin);
+      this.login$.next(this.isLogin);
       sessionStorage.setItem('log', JSON.stringify(this.isLogin));
     });
   }

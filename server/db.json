@@ -1,0 +1,301 @@
+{
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Pizza Carbonara2",
+      "description": "Sos śmietanowy z szynką",
+      "price": "12.00",
+      "type": "pizza",
+      "isAvailable": "false"
+    },
+    {
+      "id": 2,
+      "name": "Spagetti Carbonara",
+      "description": "Sos śmietanowy z szynkąi bekonerm",
+      "price": "17000.50",
+      "type": "noodle",
+      "isAvailable": "false"
+    },
+    {
+      "id": 5,
+      "name": "Spagetti Siciliana",
+      "isAvailable": true,
+      "description": "Sos boloński z szynką i kukurydzą",
+      "type": "noodle",
+      "price": "17.50"
+    },
+    {
+      "id": 6,
+      "name": "Gree Tea",
+      "isAvailable": true,
+      "description": "green tea",
+      "type": "drink",
+      "price": "17.50"
+    },
+    {
+      "id": 7,
+      "name": "Nowiusieńka pizza",
+      "description": "Smaczna pizza z sosem i serem",
+      "price": "10",
+      "type": "pizza",
+      "isAvailable": "true"
+    },
+    {
+      "id": 8,
+      "name": "Bekon with eggs",
+      "description": "noodles with bekon and egss",
+      "price": "33",
+      "type": "noodles",
+      "isAvailable": true
+    },
+    {
+      "id": 9,
+      "name": "qqqq",
+      "description": "qqqqq",
+      "price": "34",
+      "type": "qqqq",
+      "isAvailable": false
+    },
+    {
+      "id": 10,
+      "name": "Mojito Mango",
+      "description": "rum, mango, woda",
+      "price": "20",
+      "type": "drinks",
+      "isAvailable": false
+    }
+  ],
+  "orders": [
+    {
+      "dishIds": [
+        5,
+        5,
+        5,
+        5,
+        1
+      ],
+      "status": "delivering",
+      "amount": 150,
+      "id": 2
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "status": "new",
+      "amount": 90,
+      "id": 4
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1
+      ],
+      "status": "new",
+      "amount": 77,
+      "id": 6
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "status": "new",
+      "amount": 89,
+      "id": 7
+    },
+    {
+      "dishIds": [
+        5,
+        1,
+        6
+      ],
+      "status": "wait",
+      "customer": {
+        "firstName": "Bruce",
+        "lastName": "Banner",
+        "address": "Kolorowa 6",
+        "phone": "789456123",
+        "email": "hulk@gmail.com"
+      },
+      "amount": 88,
+      "id": 8
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1
+      ],
+      "status": "new",
+      "customer": {
+        "firstName": "a2",
+        "lastName": "a2",
+        "address": "a2",
+        "phone": "789456123",
+        "email": "a@w.pl"
+      },
+      "amount": 50,
+      "id": 9
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "status": "new",
+      "customer": {
+        "firstName": "Peter",
+        "lastName": "Parker",
+        "address": "Roosvelta 35",
+        "phone": "258465369",
+        "email": "spider.man@avangers.com"
+      },
+      "amount": 60,
+      "id": 10
+    },
+    {
+      "dishIds": [
+        1,
+        1,
+        1,
+        1,
+        5,
+        6,
+        7,
+        7,
+        8,
+        1
+      ],
+      "status": "new",
+      "customer": {
+        "firstName": "Natalia",
+        "lastName": "Wojtkowiak",
+        "address": "Kolorowa 6",
+        "phone": "792461258",
+        "email": "natalia.wojtkowiak@engineer.com"
+      },
+      "amount": 110,
+      "id": 11
+    },
+    {
+      "dishIds": [
+        1
+      ],
+      "status": "wait",
+      "customer": {
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "address": "Adresowa",
+        "phone": "456123789",
+        "email": "iron@man.com"
+      },
+      "amount": 32,
+      "id": 12
+    },
+    {
+      "dishIds": [
+        1,
+        2,
+        6
+      ],
+      "status": "new",
+      "customer": {
+        "firstName": "Thor",
+        "lastName": "Grzomotowładca",
+        "address": "Sztormowa",
+        "phone": "111111111",
+        "email": "thor@thor.com"
+      },
+      "amount": 37,
+      "id": 13
+    },
+    {
+      "dishIds": [
+        2,
+        5
+      ],
+      "status": "new",
+      "customer": {
+        "firstName": "Natalia",
+        "lastName": "Wojtkowiak",
+        "address": "Kolorowa 6",
+        "phone": "792461258",
+        "email": "natalia.wojtkowiak@engineer.com"
+      },
+      "amount": 757,
+      "id": 14
+    },
+    {
+      "dishIds": [
+        1,
+        2,
+        5
+      ],
+      "status": "delivering",
+      "customer": {
+        "firstName": "Peter",
+        "lastName": "Parker",
+        "address": "Sieciowa 2",
+        "phone": "456123987",
+        "email": "spider@man.com"
+      },
+      "amount": 57,
+      "id": 15
+    },
+    {
+      "dishIds": [
+        1,
+        5,
+        6
+      ],
+      "status": "preparing",
+      "customer": {
+        "firstName": "Peter",
+        "lastName": "Parker",
+        "address": "Parkowa 22",
+        "phone": "159357258",
+        "email": "peter.parker@gmail.com"
+      },
+      "amount": 47,
+      "id": 16
+    },
+    {
+      "dishIds": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "status": "delivered",
+      "customer": {
+        "firstName": "Peter",
+        "lastName": "Pan",
+        "address": "Nibylandia 5",
+        "phone": "456987123",
+        "email": "peter.pan@nibyladnia.com"
+      },
+      "amount": 78,
+      "id": 17
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "admin",
+      "password": "admin"
+    }
+  ]
+}
