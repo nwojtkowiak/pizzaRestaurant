@@ -51,9 +51,8 @@ export class OrderService {
   }
 
   getOrders() {
-    let orders: Order[] = [];
     this.httpClient.get<Order[]>('http://localhost:3000/orders').
-    subscribe(res => { orders = res; this.orders$.next(res);  } );
+    subscribe(res => { this.orders$.next(res);  } );
 
   }
 

@@ -12,11 +12,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class FormDishComponent implements OnInit {
   dishForm = new FormGroup(
     {
-      name: new FormControl(this.activeRoute.snapshot.paramMap.get('name'), [Validators.required, Validators.minLength(4)]),
-      type: new FormControl(this.activeRoute.snapshot.paramMap.get('type'), [Validators.required]),
-      price: new FormControl(this.activeRoute.snapshot.paramMap.get('price'), [Validators.required, Validators.pattern("[0-9,.]*")] ),
-      description: new FormControl(this.activeRoute.snapshot.paramMap.get('description'), Validators.required),
-      isAvailable: new FormControl(this.activeRoute.snapshot.paramMap.get('isAvailable'),  Validators.required),
+      name: new FormControl(this.activeRoute.snapshot.paramMap.get('name'),
+        [Validators.required, Validators.minLength(4)]),
+      type: new FormControl(this.activeRoute.snapshot.paramMap.get('type'),
+        [Validators.required]),
+      price: new FormControl(this.activeRoute.snapshot.paramMap.get('price'),
+        [Validators.required, Validators.pattern("[0-9,.]*")] ),
+      description: new FormControl(this.activeRoute.snapshot.paramMap.get('description'),
+        Validators.required),
+      isAvailable: new FormControl(this.activeRoute.snapshot.paramMap.get('isAvailable'),
+        Validators.required),
     });
   constructor(private readonly menuService: MenuService,
               private readonly router: Router,
