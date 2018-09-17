@@ -1,10 +1,16 @@
 <div class="divBasket">
   <table class="basket">
     <tr>
-      <th>Id</th>
-      <th>Amount</th>
-      <th>Dishes</th>
-      <th>Status</th>
+      <th> Id </th>
+      <th> Amount
+        <img class="arrow" (click)="sort('price','up')"src="../../assets/arrowUp.png" width="20" height="20">
+        <img class="arrow" (click)="sort('price','down')"src="../../assets/arrowDown.png" width="20" height="20">
+      </th>
+      <th> Dishes </th>
+      <th>Status
+        <img class="arrow" (click)="sort('status','up')"src="../../assets/arrowUp.png" width="20" height="20">
+        <img class="arrow" (click)="sort('status','down')"src="../../assets/arrowDown.png" width="20" height="20">
+      </th>
 
     </tr>
     <tr *ngFor="let order of orders">
@@ -15,10 +21,8 @@
       <td >
         <img  [id]="'detailBtn' + order.id"  (click)="showDetail(order)"
               src="../assets/details.png" height="30" width="30">
-       <!-- <button  (click)="showDetail(order)">Detail</button>-->
       </td>
       <td >
-        <!--<input  [id]="'status' + order.id" type="text">-->
         <select [id]="'status' + order.id" name="cars" >
           <option value="new">New</option>
           <option value="preparing">Preparing</option>

@@ -4,6 +4,7 @@ import {takeUntil} from "rxjs/operators";
 import {OrderService} from "../shared/order/order.service";
 import {Subject} from "rxjs";
 import {Router} from "@angular/router";
+import {SortService} from "../shared/menu/sort.service";
 
 @Component({
   selector: 'app-order',
@@ -17,7 +18,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private readonly orderService: OrderService,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly sortService: SortService) {
   }
 
   ngOnInit() {
@@ -48,6 +50,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     const status = (document.getElementById('status' + order.id) as HTMLInputElement).value;
     order.status = status;
     this.orderService.changeStatus(order);
+  }
+
+  sort(type: string, direction: string) {
+    this.sortService.sortOrders(this.orders, type, direction);
   }
 
   ngOnDestroy(): void {
