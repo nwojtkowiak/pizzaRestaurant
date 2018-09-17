@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 export class BasketComponent implements OnInit, OnDestroy {
 
   basket: Dish[] = [];
+  amount = 0.0;
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private readonly orderService: OrderService, private readonly router: Router) {
@@ -21,6 +22,7 @@ export class BasketComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.basket = (JSON.parse(localStorage.getItem("basket") ? localStorage.getItem("basket") : "[]") as Dish[]);
+    this.amount = (JSON.parse(localStorage.getItem("amount") ? localStorage.getItem("amount") : "0"));
 
     this.orderService.basket$.pipe(
       takeUntil(this.destroy$)
@@ -28,12 +30,14 @@ export class BasketComponent implements OnInit, OnDestroy {
       dish => {
         if (dish) {
           this.basket.push(dish);
-
-
+          this.amount += Number(dish.price);
           localStorage.setItem("basket", JSON.stringify(this.basket));
+          localStorage.setItem("amount", JSON.stringify(this.amount));
         } else {
           this.basket = [];
+          this.amount = 0;
           localStorage.setItem("basket", JSON.stringify(this.basket));
+          localStorage.setItem("amount", JSON.stringify(this.amount));
         }
       }
     );

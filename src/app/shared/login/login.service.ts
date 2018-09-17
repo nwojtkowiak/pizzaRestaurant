@@ -4,18 +4,20 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
 import {Location} from "@angular/common";
+import {passBoolean} from "protractor/built/util";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private isLogin = false;
+   private isLogin = false;
    login$: BehaviorSubject<boolean> = new BehaviorSubject(this.isLogin);
   requestedPath: string;
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private readonly router: Router, private readonly httpClient: HttpClient, private readonly location: Location) {
     if (sessionStorage.getItem('log')) {
-      this.isLogin = true;
+      this.isLogin = JSON.parse(sessionStorage.getItem('log'));
       this.login$.next(this.isLogin);
     }
   }
@@ -48,5 +50,12 @@ export class LoginService {
 
   checkLogin() {
     return this.isLogin;
+  }
+
+  ngOnDestroy(): void {
+    /*zabic wszystkich*/
+    this.destroy$.next();
+    /*zabijamy siebie*/
+    this.destroy$.complete();
   }
 }

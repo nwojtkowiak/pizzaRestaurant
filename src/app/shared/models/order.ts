@@ -5,5 +5,6 @@ export interface Order {
   dishIds: number[];
   customer: Customer;
   status: string;
+  amount: number;
 }
 

@@ -43,6 +43,7 @@ export class SummaryComponent implements OnInit {
       customer.email = this.addressForm.get('email').value;
       this.orderService.addOrder(this.basket, customer);
       this.router.navigate(['/menu']);
+      alert("Your order was apply");
     } else {
       alert("Fields can't be empty");
     }

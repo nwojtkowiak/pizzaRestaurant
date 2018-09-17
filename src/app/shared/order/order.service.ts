@@ -28,12 +28,14 @@ export class OrderService {
     order.dishIds = [];
     order.status = 'new';
     order.customer = customer;
-
+    order.amount = 0;
+    basket.map(b => b.price).forEach(element => order.amount += Number(element));
     basket.map(b => b.id).forEach(element => order.dishIds.push(element));
 
     this.httpClient.post<Order>('http://localhost:3000/orders', order).subscribe(
       res => console.log(res.id) );
     localStorage.setItem('basket', JSON.stringify([]));
+    localStorage.setItem('amount', JSON.stringify(0));
   }
 
   deleteOrder(order: Order) {

@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
   isLogin = false;
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor( private router: Router, private loginService: LoginService,
-               private menuService: MenuService, private orderService: OrderService) {
+  constructor( private router: Router,
+               private loginService: LoginService,
+               private menuService: MenuService,
+               private orderService: OrderService) {
  }
   ngOnInit() {
     this.loginService.login$.pipe(
