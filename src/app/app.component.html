@@ -10,14 +10,9 @@
 <nav>
 
   <img  class="menuBtn"  (click)="navigateToMenu()"  src="../assets/menu.png" height="42" width="42">
-  <!--<button type="button" class="button" (click)="navigateToMenu()">
-    MENU
-  </button>-->
   <img  *ngIf="isLogin" class="orderBtn"  (click)="navigateToOrder()"  src="../assets/orders.png" height="42" width="42">
   <img  *ngIf="isLogin" class="orderBtn"  (click)="addDish()" src="../assets/addDish.png" height="40" width="40">
-  <!--<button *ngIf="isLogin" type="button" class="button" (click)="navigateToOrder()">
-    ORDERS
-  </button>-->
+
 
 </nav>
 <router-outlet></router-outlet>

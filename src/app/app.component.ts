@@ -18,8 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor( private router: Router, private loginService: LoginService,
                private menuService: MenuService, private orderService: OrderService) {
-
-  }
+ }
   ngOnInit() {
     this.loginService.login$.pipe(
       takeUntil(this.destroy$)

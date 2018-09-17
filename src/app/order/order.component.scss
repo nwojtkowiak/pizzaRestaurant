@@ -1,11 +1,9 @@
 th{
-  background-color: #4CAF50;
+  background-color: #0074D9;
   color: white;
 }
 .basket{
   width: 100%;
-
-
   table-layout: auto;
   border-collapse: collapse;
   min-height: 20%;
@@ -14,7 +12,7 @@ th{
   float: right;
 }
 .btn{
-  background-color: #4CAF50;
+  background-color: #0074D9;
   border-radius: 8px;
   color: white;
 }
@@ -22,4 +20,8 @@ th{
 input{
   width: 50px;
 }
+td{
+  text-align: center;
+}
+
 

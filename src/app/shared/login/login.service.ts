@@ -14,6 +14,10 @@ export class LoginService {
   requestedPath: string;
 
   constructor(private readonly router: Router, private readonly httpClient: HttpClient, private readonly location: Location) {
+    if (sessionStorage.getItem('log')) {
+      this.isLogin = true;
+      this.login$.next(this.isLogin);
+    }
   }
 
   getUser(user: string): Observable<User[]> {
@@ -32,12 +36,14 @@ export class LoginService {
         alert('Your credentials are wrong :(');
       }
        this.login$.next(this.isLogin);
+      sessionStorage.setItem('log', JSON.stringify(this.isLogin));
     });
   }
 
   logout() {
     this.isLogin = false;
     this.login$.next(this.isLogin);
+    sessionStorage.setItem('log', JSON.stringify(this.isLogin));
   }
 
   checkLogin() {

@@ -232,15 +232,14 @@ describe('MenuService', () => {
   }));
 
   it('should add dish when addDish', fakeAsync(() => {
-    // given
-
-    let dishes = [];
     // when
-    menuService.dishes$.subscribe(res => dishes = res);
     menuService.addDish(mockedDish);
-    mockBackend.expectOne('http://localhost:3000/dishes').flush(mockedDishes);
+    const mockReq = mockBackend.expectOne('http://localhost:3000/dishes');
+    console.log(mockReq);
 
-    expect(dishes.length).toBeGreaterThanOrEqual(0);
+    // then
+    expect(mockReq.request.body).toEqual(mockedDish);
+    expect(mockReq.request.method).toEqual('POST');
 
   }));
 
