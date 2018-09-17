@@ -2,22 +2,29 @@
   <button class="menuBtn" type="button" (click)="getPizza()">Pizza</button>
   <button class="menuBtn" type="button" (click)="getNoodles()">Noodles</button>
   <button class="menuBtn" type="button" (click)="getDrinks()">Drinks</button>
+
 </div>
 
 
 <div class="menuTable">
   <table class="menu">
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Price</th>
+      <th>Nr</th>
+      <th>  Name
+        <img (click)="sort('name','up')"src="../../assets/arrowUp.png" width="20" height="20">
+        <img (click)="sort('name','down')"src="../../assets/arrowDown.png" width="20" height="20">
+      </th>
+      <th> Type </th>
+      <th> Description </th>
+      <th>Price
+        <img (click)="sort('price','up')"src="../../assets/arrowUp.png" width="20" height="20">
+        <img (click)="sort('price','down')"src="../../assets/arrowDown.png" width="20" height="20">
+      </th>
 
     </tr>
-    <tr *ngFor="let dish of dishes">
+    <tr *ngFor="let dish of dishes; let i = index" [attr.data-index]="i">
       <!--<tr *ngFor="let dish of menuService.dishes$ | async " >-->
-      <td>{{dish.id}}</td>
+      <td><!--{{dish.id}}-->{{i+1}}</td>
       <td>{{dish.name}}</td>
       <td>{{dish.type}}</td>
       <td>{{dish.description}}</td>

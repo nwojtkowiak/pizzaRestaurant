@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {map, takeUntil, tap} from 'rxjs/operators';
 import {OrderService} from "../shared/order/order.service";
 import {LoginService} from "../shared/login/login.service";
+import {SortService} from "../shared/menu/sort.service";
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +23,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(public readonly menuService: MenuService,
               private readonly orderService: OrderService,
               private readonly loginService: LoginService,
-              private readonly router: Router) {  }
+              private readonly router: Router,
+              private readonly sortService: SortService) {  }
 
   ngOnInit() {
 
@@ -75,10 +77,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.orderService.addToBasket(dish);
   }
 
-  addDish() {
-    this.router.navigate(['/add']);
-  }
-
   showDetail(dishId: number) {
     this.router.navigate(['/menu', dishId]);
   }
@@ -87,12 +85,19 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.getDishes();
   }
 
+  sort(type: string, direction: string) {
+    this.sortService.sortDishes(this.dishes, type, direction);
+  }
+
   ngOnDestroy(): void {
     /*zabic wszystkich*/
     this.destroy$.next();
     /*zabijamy siebie*/
     this.destroy$.complete();
   }
+
+
+
 
 
 }

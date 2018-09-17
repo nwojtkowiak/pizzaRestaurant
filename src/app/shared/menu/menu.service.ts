@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Dish} from '../models/dish';
 import {LoginService} from "../login/login.service";
 import {map} from "rxjs/operators";
+import {SortService} from "./sort.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {map} from "rxjs/operators";
 export class MenuService {
   dishes$ = new BehaviorSubject<Dish[]>(null);
 
-  constructor(private readonly httpClient: HttpClient, private readonly loginService: LoginService) {
+  constructor(private readonly httpClient: HttpClient,
+              private readonly loginService: LoginService) {
   }
 
   getDish(id: number): Observable<Dish> {
@@ -66,5 +68,7 @@ export class MenuService {
     this.httpClient.delete<Dish>('http://localhost:3000/dishes/' + dish.id).subscribe(
       res => this.getDishes());
   }
+
+
 
 }

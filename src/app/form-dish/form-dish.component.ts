@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Dish} from "../shared/models/dish";
-import {Customer} from "../shared/models/customer";
 import {MenuService} from "../shared/menu/menu.service";
 import {ActivatedRoute, Router} from "@angular/router";
 

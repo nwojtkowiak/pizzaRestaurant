@@ -10,12 +10,14 @@ import {BehaviorSubject, Subject} from "rxjs";
 import {LoginService} from "../shared/login/login.service";
 import {Router} from "@angular/router";
 import {OrderService} from "../shared/order/order.service";
+import {SortService} from "../shared/menu/sort.service";
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
   let menuService: MenuService;
   let orderService: OrderService;
+  let sortService: SortService;
   let router: Router;
 
   const mockedDishes: Dish[] = [{
@@ -46,6 +48,10 @@ describe('MenuComponent', () => {
     addToBasket: jasmine.createSpy('addToBasket'),
   };
 
+  const sortServiceMock = {
+    sortDishes: jasmine.createSpy('sortDishes'),
+  };
+
   const loginServiceMock = {
     login$: new Subject<boolean>(),
     checkLogin: jasmine.createSpy('checkLogin')
@@ -62,6 +68,7 @@ describe('MenuComponent', () => {
       providers: [{provide: MenuService, useValue: menuServiceMock},
         {provide: OrderService, useValue: orderServiceMock},
         {provide: LoginService, useValue: loginServiceMock},
+        {provide: SortService, useValue: sortServiceMock},
         {provide: Router, useValue: routereMock}
       ],
 
@@ -75,6 +82,7 @@ describe('MenuComponent', () => {
     component = fixture.componentInstance;
     menuService = TestBed.get(MenuService);
     orderService = TestBed.get(OrderService);
+    sortService = TestBed.get(SortService);
     router = TestBed.get(Router);
     fixture.detectChanges();
   });
@@ -118,8 +126,6 @@ describe('MenuComponent', () => {
     expect(component.dishes.length).toBeGreaterThan(dishes.length);
   });
 
-
-
   it('should call menu after showDetail', () => {
     // when
     component.showDetail(1);
@@ -134,6 +140,16 @@ describe('MenuComponent', () => {
     component.addToBasket(dish);
     // then
     expect(orderService.addToBasket).toHaveBeenCalled();
+  });
+
+  it('should call sortDishes', () => {
+    // given
+    const type = 'name';
+    const direction = 'up';
+    // when
+    component.sort(type, direction);
+    // then
+    expect(sortService.sortDishes).toHaveBeenCalled();
   });
 
 
