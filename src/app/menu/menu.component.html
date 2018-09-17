@@ -23,15 +23,12 @@
 
     </tr>
     <tr *ngFor="let dish of dishes; let i = index" [attr.data-index]="i">
-      <!--<tr *ngFor="let dish of menuService.dishes$ | async " >-->
-      <td><!--{{dish.id}}-->{{i+1}}</td>
+      <td>{{i+1}}</td>
       <td>{{dish.name}}</td>
       <td>{{dish.type}}</td>
       <td>{{dish.description}}</td>
       <td>{{dish.price}}</td>
       <td class="btn">
-        <!--<img   [id]="'add' + dish.id" *ngIf="!login" (click)="addToBasket(dish)"
-              src="../assets/add.png" height="42" width="42">-->
         <img [id]="'add' + dish.id" *ngIf="!login" (click)="addToBasket(dish)"
              src="../assets/order.png" height="42" width="42">
         <img [id]="'detail' + dish.id" *ngIf="login" (click)="showDetail(dish.id)"
