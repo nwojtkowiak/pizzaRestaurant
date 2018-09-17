@@ -1,6 +1,5 @@
 <table class="basket" *ngIf="!login">
   <tr>
-    <th>Id</th>
     <th>Name</th>
     <th>Type</th>
     <th>Description</th>
@@ -8,7 +7,6 @@
 
   </tr>
   <tr *ngFor="let dish of basket" >
-    <td>{{dish.id}}</td>
     <td>{{dish.name}}</td>
     <td>{{dish.type}}</td>
     <td>{{dish.description}}</td>
@@ -22,10 +20,11 @@
     <th>Amount: </th>
     <th></th>
     <th></th>
-    <th></th>
     <th>{{amount}}</th>
 
   </tr>
 </table>
+<img  class="deleteBtn" *ngIf="basket.length>0" (click)="remove()"
+      src="../assets/delete.png" height="42" width="42">
 <img  class="confirmBtn" *ngIf="basket.length>0" (click)="order()"
       src="../assets/cash.png" height="42" width="42">

@@ -47,6 +47,14 @@ export class BasketComponent implements OnInit, OnDestroy {
     this.router.navigate(['/summary']);
   }
 
+  remove() {
+    this.basket = [];
+    this.amount = 0;
+    localStorage.setItem("basket", JSON.stringify(this.basket));
+    localStorage.setItem("amount", JSON.stringify(this.amount));
+
+  }
+
   ngOnDestroy(): void {
     /*zabic wszystkich*/
     this.destroy$.next();
